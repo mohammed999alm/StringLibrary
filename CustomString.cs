@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 
 namespace StringLibrary
 {
@@ -14,19 +15,19 @@ namespace StringLibrary
         private char[] values;
 
         private List<string> words;
-        public CustomString(string value) 
+        public CustomString(string value)
         {
             Value = value;
 
             values = new char[Value.Length];
 
-            for (int i = 0; i < Value.Length; i++) 
+            for (int i = 0; i < Value.Length; i++)
             {
                 values[0] = Value[i];
             }
         }
 
-        private static char[] _converToCharArray(string value) 
+        private static char[] _converToCharArray(string value)
         {
             char[] result = new char[value.Length];
 
@@ -39,31 +40,31 @@ namespace StringLibrary
             return result;
         }
 
-        private static bool _isUpper(char character) 
+        private static bool _isUpper(char character)
         {
             return (character >= 'A' && character <= 'Z');
         }
 
-        private static bool _isLower(char character) 
+        private static bool _isLower(char character)
         {
             return (character >= 'a' && character <= 'z');
         }
 
-        private static bool _isNumber(char character) 
+        private static bool _isNumber(char character)
         {
-            return (character >= '0' && character <= '9');  
+            return (character >= '0' && character <= '9');
         }
 
-        private static bool _isPunct(char character) 
+        private static bool _isPunct(char character)
         {
-            return ((character >= '!' && character <= '/') 
-                || (character >= ':' && character <= '@') 
+            return ((character >= '!' && character <= '/')
+                || (character >= ':' && character <= '@')
                 || (character >= '[' && character <= '`')
                 || (character >= '{' && character <= '~')
                 );
         }
 
-        private static char _toUpperCase(char character) 
+        private static char _toUpperCase(char character)
         {
             return (_isUpper(character)) ? character : Convert.ToChar((int)character - 32);
         }
@@ -73,13 +74,13 @@ namespace StringLibrary
             return (_isLower(character)) ? character : Convert.ToChar((int)character + 32);
         }
 
-        private static char _invertCharacterCase(char character) 
+        private static char _invertCharacterCase(char character)
         {
             return (_isLower(character)) ? Convert.ToChar((int)character - 32) : (_isUpper(character)) ? Convert.ToChar((int)character + 32) : character;
         }
 
 
-        public static string invertCharactersCase(string value) 
+        public static string invertCharactersCase(string value)
         {
             char[] arr = _converToCharArray(value);
 
@@ -95,15 +96,15 @@ namespace StringLibrary
             return value;
         }
 
-        public static int punctCount(string value) 
+        public static int punctCount(string value)
         {
             int counter = 0;
 
             int length = LengthString(value);
 
-            for (int i = 0; i < length; i++) 
+            for (int i = 0; i < length; i++)
             {
-                if (_isPunct(value[i])) 
+                if (_isPunct(value[i]))
                 {
                     counter++;
                 }
@@ -113,7 +114,7 @@ namespace StringLibrary
         }
 
 
-        public int punctCount() 
+        public int punctCount()
         {
             return punctCount(Value);
         }
@@ -191,7 +192,7 @@ namespace StringLibrary
             return upperCaseCount(Value);
         }
 
-        public string invertCharactersCase() 
+        public string invertCharactersCase()
         {
             return invertCharactersCase(Value);
         }
@@ -203,14 +204,14 @@ namespace StringLibrary
 
             string newText = "";
 
-            for (int i = 0; i < text.Length; i++) 
+            for (int i = 0; i < text.Length; i++)
             {
 
                 if (isFirstLetter && text[i] != ' ')
                 {
                     newText += _toUpperCase(text[i]);
                 }
-                else 
+                else
                 {
                     newText += text[i];
                 }
@@ -222,7 +223,7 @@ namespace StringLibrary
             return newText;
         }
 
-        public string upperCaseFirstLetter() 
+        public string upperCaseFirstLetter()
         {
             return upperCaseFirstLetter(Value);
         }
@@ -232,17 +233,17 @@ namespace StringLibrary
 
             value = "";
 
-            for (int i = 0; i < arr.Length; i++) 
+            for (int i = 0; i < arr.Length; i++)
             {
                 arr[i] = _toUpperCase(arr[i]);
 
                 value += arr[i];
             }
 
-            return value; 
+            return value;
         }
 
-        public string toUpperCase() 
+        public string toUpperCase()
         {
             return toUpperCase(Value);
         }
@@ -268,7 +269,7 @@ namespace StringLibrary
             return toLowerCase(Value);
         }
 
-        public static int length(string value) 
+        public static int length(string value)
         {
             List<char> list = new List<char>();
 
@@ -284,7 +285,7 @@ namespace StringLibrary
                 }
 
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
 
             }
@@ -300,26 +301,26 @@ namespace StringLibrary
             int i = 0;
 
             value += "\0";
-   
+
             while (value[i] != '\0')
             {
                 list.Add(value[i]);
-           
+
                 i++;
             }
 
-            
+
             return list.Count;
         }
 
-        public static int LengthString(string value) 
+        public static int LengthString(string value)
         {
             string text = value + "\0";
 
             int length = 0;
 
             while (text[length] != '\0')
-            { 
+            {
                 length++;
             }
 
@@ -327,7 +328,7 @@ namespace StringLibrary
 
         }
 
-        public int LengthString() 
+        public int LengthString()
         {
             return LengthString(Value);
         }
@@ -338,13 +339,13 @@ namespace StringLibrary
             int pos = 0;
             string word = null;
 
-            List <string> words = new List<string>();
+            List<string> words = new List<string>();
 
-            while ((pos = text.IndexOf(delimiter)) != -1) 
+            while ((pos = text.IndexOf(delimiter)) != -1)
             {
                 word = text.Substring(0, pos);
 
-                if (word != null) 
+                if (word != null)
                 {
                     words.Add(word);
                 }
@@ -352,7 +353,7 @@ namespace StringLibrary
                 text = text.Remove(0, pos + delimiter.Length);
             }
 
-            if (text != "") 
+            if (text != "")
             {
                 words.Add(text);
             }
@@ -360,7 +361,7 @@ namespace StringLibrary
             return words;
         }
 
-        public List<string> Split(string separator = " ") 
+        public List<string> Split(string separator = " ")
         {
             return words = Split(Value, separator);
         }
@@ -409,7 +410,7 @@ namespace StringLibrary
                 line += word + separator;
             }
 
-            
+
             return line.Substring(0, line.Length - separator.Length);
         }
 
@@ -427,25 +428,28 @@ namespace StringLibrary
 
 
         //Substring With Start End Pattern Which Is Used In Java
-        public static string substr(string text, int start, int end = 0) 
+        public static string substr(string text, int start, int end = 0)
         {
             string sub = string.Empty;
 
-            if (end == 0) 
+            if (end > LengthString(text))
+                end = LengthString(text);
+
+            if (end == 0)
             {
                 end = LengthString(text);
             }
 
-            for (int i = start; i < end; i++) 
+            for (int i = start; i < end; i++)
             {
                 sub += text[i];
             }
-            
+
 
             return sub;
         }
 
-        public string substr(int start, int end = 0) 
+        public string substr(int start, int end = 0)
         {
             return substr(Value, start, end);
         }
@@ -460,19 +464,19 @@ namespace StringLibrary
                 length += start;
             }
 
-            else 
+            else
             {
                 length = LengthString(text);
             }
 
-            for (int i = start; i < length; i++) 
+            for (int i = start; i < length; i++)
             {
-                if (LengthString(text) > i) 
+                if (LengthString(text) > i)
                 {
                     sub += text[i];
                 }
 
-                else 
+                else
                 {
                     break;
                 }
@@ -481,26 +485,26 @@ namespace StringLibrary
             return sub;
         }
 
-        public  string Substr(int start, int length = 0) 
+        public string Substr(int start, int length = 0)
         {
             return Substr(Value, start, length);
         }
 
 
-        public static int countWords(string text) 
+        public static int countWords(string text)
         {
             int wordCounter = 0;
 
             bool isFirstLetter = true;
 
-            for (int i = 0; i < text.Length; i++) 
+            for (int i = 0; i < text.Length; i++)
             {
                 if (isFirstLetter && text[i] != ' ')
                 {
                     wordCounter++;
                 }
 
-               
+
                 isFirstLetter = (text[i] == ' ') ? true : false;
             }
 
@@ -520,7 +524,7 @@ namespace StringLibrary
             List<string> words;
 
             words = Split(text);
-  
+
             return words.Count;
         }
 
@@ -529,7 +533,7 @@ namespace StringLibrary
             return countWords(Value);
         }
 
-        public static string reverseWords(string text, string separator = " ") 
+        public static string reverseWords(string text, string separator = " ")
         {
             List<string> words;
 
@@ -537,7 +541,7 @@ namespace StringLibrary
 
             text = "";
 
-            for (int i = words.Count - 1; i >= 0; i--) 
+            for (int i = words.Count - 1; i >= 0; i--)
             {
                 text += words[i] + " ";
             }
@@ -546,7 +550,7 @@ namespace StringLibrary
             return text;
         }
 
-        public string reverseWords(string separator = " ") 
+        public string reverseWords(string separator = " ")
         {
             return reverseWords(Value, separator);
         }
@@ -557,7 +561,7 @@ namespace StringLibrary
 
             string newText = "";
 
-            for (int i = text.Length - 1; i >= 0; i--) 
+            for (int i = text.Length - 1; i >= 0; i--)
             {
                 newText += text[i];
             }
@@ -570,7 +574,7 @@ namespace StringLibrary
             return reverseString(Value, separator);
         }
 
-        public static int findIndex(string text, string character) 
+        public static int findIndex(string text, string character)
         {
             for (int i = 0; i < text.Length; i++)
             {
@@ -581,17 +585,17 @@ namespace StringLibrary
             return -1;
         }
 
-        public int findIndex(string character) 
+        public int findIndex(string character)
         {
             return findIndex(Value, character);
         }
 
 
-        public static int lastIndex(string text, string character) 
+        public static int lastIndex(string text, string character)
         {
             for (int i = text.Length - 1; i >= 0; i--)
             {
-                if (text[i] == char.Parse(character)) 
+                if (text[i] == char.Parse(character))
                 {
                     return i;
                 }
@@ -600,28 +604,28 @@ namespace StringLibrary
             return -1;
         }
 
-        public int lastIndex(string character) 
+        public int lastIndex(string character)
         {
             return lastIndex(Value, character);
         }
 
 
-        public static char charAt(string text, int index) 
+        public static char charAt(string text, int index)
         {
             return text[index];
         }
 
 
-        public char charAt(int index) 
+        public char charAt(int index)
         {
             return charAt(Value, index);
         }
 
 
-        public static string trimRight(string text) 
+        public static string trimRight(string text)
         {
 
-            for (int i = 0; i < text.Length; i++) 
+            for (int i = 0; i < text.Length; i++)
             {
                 if (text[i] != ' ')
                 {
@@ -633,17 +637,17 @@ namespace StringLibrary
         }
 
 
-        public  string trimRight()
+        public string trimRight()
         {
             return trimRight(Value);
         }
 
 
-        public static string trimLeft(string text) 
+        public static string trimLeft(string text)
         {
-            for (int i = text.Length - 1; i >= 0; i--) 
+            for (int i = text.Length - 1; i >= 0; i--)
             {
-                if (text[i] != ' ') 
+                if (text[i] != ' ')
                 {
                     //it's from 0 start point and length will be for example 36 the i is is 35 so we need to increament the index i
                     //if we want to include the last character.
@@ -665,17 +669,17 @@ namespace StringLibrary
             return trimRight(trimLeft(text));
         }
 
-        public string trimAll() 
+        public string trimAll()
         {
             return trimAll(Value);
         }
 
-        public static bool equalIgnoreCase(string text1, string text2) 
+        public static bool equalIgnoreCase(string text1, string text2)
         {
             return toUpperCase(text1) == toUpperCase(text2);
         }
 
-        public bool equalIgnoreCase(string text) 
+        public bool equalIgnoreCase(string text)
         {
             return equalIgnoreCase(text, Value);
         }
@@ -691,5 +695,29 @@ namespace StringLibrary
             return equal(text, Value);
         }
 
+        private static  void swapIndexes(ref int start, ref int end) 
+        {
+            int temp;
+
+            temp = start;
+            start = end;
+            end = temp;
+
+        }
+
+        //modified version of remove method
+        public static string erase(string text, int start, int end) 
+        {
+            if (start > end)
+            {
+                swapIndexes(ref start, ref end);
+            }
+            return  (start != 0) ? substr(text, 0, start) + substr(text, end) : substr(text, end);
+        }
+
+        public string erase(int start, int end)
+        {
+            return erase(Value, start, end);
+        }
     }
 }

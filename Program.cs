@@ -215,6 +215,59 @@ namespace StringLibrary
             Console.WriteLine(s3.equal("mohammed"));
 
 
+            Console.WriteLine(CustomString.erase("Mohammed", 4, 7));
+            Console.WriteLine(CustomString.erase("Mohammed", 0, 7));
+            Console.WriteLine(CustomString.erase("Mohammed", 7, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 2, 5));
+            Console.WriteLine(CustomString.erase("Mohammed", 1, 7));
+            Console.WriteLine(CustomString.erase("Mohammed", 0, 7));
+            Console.WriteLine(CustomString.erase("Mohammed", 0, 8));
+
+            Console.WriteLine("_______________________________________________");
+
+
+            Console.WriteLine(CustomString.erase("Mohammed", 10, 5));
+
+            Console.WriteLine("_______________________________________________");
+
+
+
+            Console.WriteLine(CustomString.erase("Mohammed", 0, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 1, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 2, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 3, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 4, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 5, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 6, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 7, 8));
+            Console.WriteLine(CustomString.erase("Mohammed", 8, 8));
+
+
+
+            Console.WriteLine("_______________________________________________");
+
+            Console.WriteLine(s3.erase(0, 8));
+            Console.WriteLine(s3.erase(1, 8));
+            Console.WriteLine(s3.erase(2, 8));
+            Console.WriteLine(s3.erase(3, 8));
+            Console.WriteLine(s3.erase(4, 8));
+            Console.WriteLine(s3.erase(5, 8));
+            Console.WriteLine(s3.erase(6, 8));
+            Console.WriteLine(s3.erase(7, 8));
+            Console.WriteLine(s3.erase(8, 8));
+            Console.WriteLine(s3.erase(9, 8));
+            Console.WriteLine(s3.erase(10, 8));
+
+
+            Console.WriteLine(s3.erase(10, 5));
+            Console.WriteLine(s3.erase(8, 5));
+
+
+
+            Console.WriteLine("_______________________________________________");
+
+
+
 
             Console.ReadKey();
 
